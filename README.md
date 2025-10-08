@@ -5,7 +5,7 @@ UnitCoffeeScale/
 │   └── UnitCoffeeScale.ino  
 │  
 ├── docs/                          ← 説明資料  
-│   └── wiring_diagram.md         ← 君が送った配線図・仕様書  
+│   └── wiring_diagram.md         ← 仕様書  
 │  
 ├── m5stack_master/               ← M5Stack 側のマスターコード  
 │   └── master.py  
