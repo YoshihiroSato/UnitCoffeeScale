@@ -55,3 +55,9 @@ Grove端子でUART接続します。重量計が2つを内蔵、温度計2つを
   黒:HX711-2:E−  
   白:HX711-2:S+  
   緑:HX711-2:S−    
+- HX711-1信号線  
+  HX711-1:CLK=ATmega328P:D2    
+  HX711-1:D=ATmega328P:D3  
+- HX711-2信号線  
+  HX711-2:CLK=ATmega328P:D4 
+  HX711-2:D=ATmega328P:D5  
