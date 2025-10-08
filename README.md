@@ -1,4 +1,20 @@
 # UnitCoffeeScale
+
+UnitCoffeeScale/  
+├── arduino_slave/                ← コーヒースケール用 Arduino コード  
+│   └── UnitCoffeeScale.ino  
+│  
+├── docs/                          ← 説明資料  
+│   └── wiring_diagram.md         ← 君が送った配線図・仕様書  
+│  
+├── m5stack_master/               ← M5Stack 側のマスターコード  
+│   └── master.py  
+│  
+├── README.md                      ← プロジェクト概要  
+├── LICENSE                        ← ライセンス  
+└── .gitignore  
+  
+
 ## 概要
 M5STACK用コーヒースケールユニット  
 M5STACK用に多機能コーヒースケールユニットを作りました。  
@@ -46,18 +62,29 @@ Grove端子でUART接続します。重量計が2つを内蔵、温度計2つを
   双方向ロジックレベル変換モジュール:VL  
 ### 信号線
 - ロードセル-1信号線  
-  赤:HX711-1:E+    
-  黒:HX711-1:E−  
-  白:HX711-1:S+  
-  緑:HX711-1:S−    
+  赤 to HX711-1:E+    
+  黒 to HX711-1:E−  
+  白 to HX711-1:S+  
+  緑 to HX711-1:S−    
 - ロードセル-2信号線  
-  赤:HX711-2:E+    
-  黒:HX711-2:E−  
-  白:HX711-2:S+  
-  緑:HX711-2:S−    
+  赤 to HX711-2:E+    
+  黒 to HX711-2:E−  
+  白 to HX711-2:S+  
+  緑 to HX711-2:S−    
 - HX711-1信号線  
-  HX711-1:CLK=ATmega328P:D2    
-  HX711-1:D=ATmega328P:D3  
+  HX711-1:CLK to ATmega328P:D2    
+  HX711-1:D to ATmega328P:D3  
 - HX711-2信号線  
-  HX711-2:CLK=ATmega328P:D4 
-  HX711-2:D=ATmega328P:D5  
+  HX711-2:CLK to ATmega328P:D4  
+  HX711-2:D to ATmega328P:D5  
+- DS18B20信号線  
+  JSTPH-1:PIN1 to ATmega328P:D6    
+  JSTPH-2:PIN1 to ATmega328P:D7
+  プルアップ抵抗4.7k-1:D to JSTPH-1:PIN1  
+  プルアップ抵抗4.7k-2:D to JSTPH-2:PIN1 
+- UART
+  Grove端子:PIN1 to 双方向ロジックレベル変換モジュール:DL1  
+  Grove端子:PIN2 to 双方向ロジックレベル変換モジュール:DL2  
+  双方向ロジックレベル変換モジュール:DH1  to  ATmega328P:11
+  双方向ロジックレベル変換モジュール:DH2  to  ATmega328P:12
+  
