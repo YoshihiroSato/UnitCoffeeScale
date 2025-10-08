@@ -1,0 +1,21 @@
+# Arduino IDE 一時ファイル
+*.log
+*.tmp
+*.bak
+
+# ビルドフォルダ
+build/
+*.bin
+*.hex
+
+# OS特有ファイル
+.DS_Store
+Thumbs.db
+
+# IDE設定
+*.vscode/
+*.idea/
+
+__pycache__/
+*.pyc
+*.log
