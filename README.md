@@ -10,7 +10,7 @@ Grove端子でUART接続します。
 - ドリップ後のサーバー内の湯温
 ## 構成
 - コア  
-  ラズベリーパイPICO（RP2040）
+  ATmega328P
 - 重量センサx2  
   ロードセル10kg  
   HX711(5V駆動)
@@ -24,7 +24,7 @@ Grove端子でUART接続します。
 ## 配線
 ### 電源
 - GND
-  ラズベリーパイPICO:PIN38  
+  ATmega328P:GND  
   Grove端子:PIN4  
   HX711-1:GND  
   HX711-2:GND  
@@ -32,13 +32,13 @@ Grove端子でUART接続します。
   JSTPH-2:PIN3  
   双方向ロジックレベル変換モジュール:GNDx2
 - 5V
-  ラズベリーパイPICO:PIN39(VSUS)  
+  ATmega328P:5V 
   Grove端子:PIN3  
   HX711-1:VCC  
   HX711-2:VCC  
   双方向ロジックレベル変換モジュール:VH  
-- 3.3V(ラズベリーパイPICOで生成)  
-  ラズベリーパイPICO:PIN36(3V3)  
+- 3.3V(ATmega328Pで生成)  
+  ATmega328P:3V3
   双方向ロジックレベル変換モジュール:VL  
   JSTPH-1:PIN2  
   JSTPH-2:PIN2  
