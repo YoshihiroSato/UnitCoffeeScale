@@ -23,7 +23,7 @@ Grove端子でUART接続します。
   Grove to 4P
 ## 配線
 ### 電源
-- GND
+- GND  
   ATmega328P:GND  
   Grove端子:PIN4  
   HX711-1:GND  
@@ -31,7 +31,7 @@ Grove端子でUART接続します。
   JSTPH-1:PIN3  
   JSTPH-2:PIN3  
   双方向ロジックレベル変換モジュール:GNDx2
-- 5V
+- 5V  
   ATmega328P:5V 
   Grove端子:PIN3  
   HX711-1:VCC  
