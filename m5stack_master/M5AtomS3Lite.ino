@@ -140,7 +140,7 @@ void loop() {
   float totaladd = datachk(wo1 + wo2, "cc");
   float totalbrew = datachk(wo1, "cc");
   float kettletemp = datachk(t2, "C");
-  float brewtemp = datachk(t1, "");
+  float brewtemp = datachk(t1, "C");
 
   display.display();
 
