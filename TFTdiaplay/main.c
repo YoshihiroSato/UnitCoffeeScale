@@ -38,12 +38,27 @@ public:
 
 MyLGFX tft;
 
+volatile bool switchChanged = false;
+volatile bool currentState = HIGH;
+
+bool ScaleOn = false;
+
+unsigned long startTime = 0;
+
 // タッチライブラリ
 XPT2046_Touchscreen ts(TOUCH_CS);
 
 // 色配列
 uint16_t colors[] = { TFT_RED, TFT_GREEN, TFT_BLUE };
 uint16_t colorIndex = 0;
+
+
+void IRAM_ATTR handleSwitch() {
+  currentState = digitalRead(PIN_SWITCH);
+  switchChanged = true;
+}
+
+
 
 void setup() {
   Serial.begin(115200);
@@ -62,24 +77,67 @@ void setup() {
   ts.setRotation(1);
 
   pinMode(PIN_SWITCH, INPUT_PULLUP);  // 内蔵プルアップ
+
+
+  attachInterrupt(digitalPinToInterrupt(PIN_SWITCH), handleSwitch, CHANGE);
 }
 
 void loop() {
 
-
-  if (ts.touched()) {
-    TS_Point p = ts.getPoint();
-    Serial.printf("X:%d Y:%d Z:%d\n", p.x, p.y, p.z);
-
-    tft.setCursor(10, 10);
-    tft.setTextColor(TFT_WHITE);
-    tft.printf("X:%d Y:%d Z:%d", p.x, p.y, p.z);
+  if (switchChanged) {
+    switchChanged = false;
+    if (currentState == LOW) {
+      ScaleOn = false;
+    } else {
+      ScaleOn = true;
+      startTime = millis();
+    }
   }
 
-  // 四角形は定期的に表示
   tft.drawRect(38, 52, 240, 160, 0xFFFFFF);
+  tft.setFont(&fonts::Font7);
+  tft.setTextSize(0.7, 1);
 
-  bool isOn = (digitalRead(PIN_SWITCH) == LOW); // GNDに落ちたらON
+  tft.setCursor(0, 0);
+  if (ScaleOn) {
+    tft.setTextColor(0x55CCFF, TFT_BLACK);
+    unsigned long elapsed = (millis() - startTime) / 1000;  // 秒単位
+    int minutes = elapsed / 60;
+    int seconds = elapsed % 60;
+    char buf[10];
+    sprintf(buf, "%02d:%02d", minutes, seconds);
+    tft.print(buf);
+  } else {
+    tft.setTextColor(TFT_WHITE, TFT_BLACK);
+    tft.print("00:00");
+  }
+
+
+
+  tft.setFont(&fonts::FreeSerifBold18pt7b);
+  tft.setTextSize(1, 1);
+
+  tft.setCursor(108, 0);
+  tft.setTextColor(0xFFF71D);
+  tft.print("000.0cc");
+
+  tft.setCursor(108, 23);
+  tft.setTextColor(0xFCFFAA);
+  tft.print("000.0cc");
+
+  tft.setCursor(223, 0);
+  tft.setTextColor(0xFFBDBD);
+  tft.print("00.0C");
+
+  tft.setCursor(223, 23);
+  tft.setTextColor(0xFFEEEE);
+  tft.print("00.0C");
+
+
+
+
+
+  bool isOn = (digitalRead(PIN_SWITCH) == LOW);  // GNDに落ちたらON
 
   tft.setCursor(80, 80);
   tft.setTextColor(TFT_WHITE);
