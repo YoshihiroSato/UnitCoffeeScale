@@ -12,8 +12,8 @@
 #define DS18B20_1_PIN 6
 #define DS18B20_2_PIN 7
 
-#define RX_PIN 10
-#define TX_PIN 11
+#define RX_PIN 10 // Grove2白
+#define TX_PIN 11 // Grove1黄色
 SoftwareSerial mySerial(RX_PIN, TX_PIN);
 
 // ===== オブジェクト =====
